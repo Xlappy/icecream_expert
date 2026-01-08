@@ -47,13 +47,13 @@ const IceCreamTable: React.FC<IceCreamTableProps> = ({ items, onUpdate, title })
               <tr key={item.id} className="hover:bg-diner-yellow/20 transition-colors group">
                 <td className="px-6 py-5">
                   <input
-                    className="bg-transparent font-display text-2xl text-choco border-none focus:ring-0 w-full"
+                    className="bg-transparent font-body font-black text-lg text-choco border-none focus:ring-0 w-full"
                     value={item.name}
                     onChange={(e) => handleEdit(item.id, 'name', e.target.value)}
                   />
                 </td>
                 <td className="px-6 py-5">
-                  <span className="bg-diner-blue/40 px-3 py-1 rounded-lg border-2 border-choco text-xs font-bold font-body uppercase">{item.type}</span>
+                  <span className="bg-diner-blue/40 px-3 py-1 rounded-lg border-2 border-choco text-[10px] font-bold font-body uppercase inline-block whitespace-nowrap">{item.type}</span>
                 </td>
                 <td className="px-6 py-5">
                   <input
@@ -63,14 +63,14 @@ const IceCreamTable: React.FC<IceCreamTableProps> = ({ items, onUpdate, title })
                   />
                 </td>
                 <td className="px-6 py-5">
-                  <div className="flex items-center gap-1 font-display text-xl">
+                  <div className="flex items-center gap-1 font-body font-black text-xl">
                     <input
                       type="number"
-                      className="bg-transparent text-choco border-none focus:ring-0 w-24"
+                      className="bg-transparent text-choco border-none focus:ring-0 w-20"
                       value={item.price}
                       onChange={(e) => handleEdit(item.id, 'price', parseInt(e.target.value))}
                     />
-                    <span className="text-cherry-red">₴</span>
+                    <span className="text-cherry-red font-display">₴</span>
                   </div>
                 </td>
                 <td className="px-6 py-5 font-bold">

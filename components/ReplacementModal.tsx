@@ -31,7 +31,7 @@ const ReplacementModal: React.FC<ReplacementModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-choco/60 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-choco/60 animate-fadeIn">
       <div className="absolute inset-0" onClick={onClose} />
 
       <div className="retro-card w-full max-w-4xl bg-cream relative animate-slideUp p-0 overflow-hidden flex flex-col max-h-[90vh]">

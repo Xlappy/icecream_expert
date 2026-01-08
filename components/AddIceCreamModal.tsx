@@ -42,7 +42,7 @@ const AddIceCreamModal: React.FC<AddIceCreamModalProps> = ({ isOpen, onClose, on
   };
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-choco/60 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-choco/60 animate-fadeIn">
       <div className="retro-card w-full max-w-4xl bg-cream relative animate-slideUp p-0 overflow-hidden flex flex-col max-h-[95vh]">
         <div className="p-8 bg-choco text-cream border-b-8 border-cherry-red flex justify-between items-center pattern-stripes">
           <h2 className="text-5xl font-display text-white drop-shadow-md">НОВИЙ РЕЦЕПТ</h2>
@@ -54,18 +54,18 @@ const AddIceCreamModal: React.FC<AddIceCreamModalProps> = ({ isOpen, onClose, on
             <h3 className="font-display text-2xl text-choco border-b-4 border-choco/10 pb-2">ІНФОРМАЦІЯ</h3>
             <div className="space-y-6">
               <div>
-                <label className="block font-body font-black text-choco/40 uppercase tracking-widest text-xs mb-2">Назва десерту</label>
+                <label className="block font-body font-black text-choco uppercase tracking-widest text-[10px] mb-2">Назва десерту</label>
                 <input required name="name" onChange={handleChange} className="retro-input w-full text-xl font-display" placeholder="НАПР. BLUEBERRY HILL" />
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-body font-black text-choco/40 uppercase tracking-widest text-xs mb-2">Категорія</label>
+                  <label className="block font-body font-black text-choco uppercase tracking-widest text-[10px] mb-2">Категорія</label>
                   <select name="type" onChange={handleChange} className="retro-input w-full font-bold uppercase text-sm">
                     {ICE_CREAM_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block font-body font-black text-choco/40 uppercase tracking-widest text-xs mb-2">Походження</label>
+                  <label className="block font-body font-black text-choco uppercase tracking-widest text-[10px] mb-2">Походження</label>
                   <select name="origin" onChange={handleChange} className="retro-input w-full font-bold uppercase text-sm">
                     {ORIGIN_TYPES.map(o => <option key={o} value={o}>{o}</option>)}
                   </select>
@@ -73,11 +73,11 @@ const AddIceCreamModal: React.FC<AddIceCreamModalProps> = ({ isOpen, onClose, on
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-body font-black text-choco/40 uppercase tracking-widest text-xs mb-2">Виробник (Бренд)</label>
+                  <label className="block font-body font-black text-choco uppercase tracking-widest text-[10px] mb-2">Виробник (Бренд)</label>
                   <input required name="brand" onChange={handleChange} className="retro-input w-full font-bold" />
                 </div>
                 <div>
-                  <label className="block font-body font-black text-choco/40 uppercase tracking-widest text-xs mb-2">Основний інгредієнт</label>
+                  <label className="block font-body font-black text-choco uppercase tracking-widest text-[10px] mb-2">Основний інгредієнт</label>
                   <input required name="baseIngredient" onChange={handleChange} className="retro-input w-full font-bold" />
                 </div>
               </div>
@@ -89,15 +89,15 @@ const AddIceCreamModal: React.FC<AddIceCreamModalProps> = ({ isOpen, onClose, on
             <div className="space-y-6">
               <div className="grid grid-cols-3 gap-6">
                 <div>
-                  <label className="block font-body font-black text-choco/40 uppercase tracking-widest text-xs mb-2">Ціна (₴)</label>
+                  <label className="block font-body font-black text-choco uppercase tracking-widest text-[10px] mb-2">Ціна (₴)</label>
                   <input required type="number" name="price" onChange={handleChange} className="retro-input w-full font-display text-xl" />
                 </div>
                 <div>
-                  <label className="block font-body font-black text-choco/40 uppercase tracking-widest text-xs mb-2">Ккал</label>
+                  <label className="block font-body font-black text-choco uppercase tracking-widest text-[10px] mb-2">Ккал</label>
                   <input required type="number" name="calories" onChange={handleChange} className="retro-input w-full font-display text-xl" />
                 </div>
                 <div>
-                  <label className="block font-body font-black text-choco/40 uppercase tracking-widest text-xs mb-2">Термін (дні)</label>
+                  <label className="block font-body font-black text-choco uppercase tracking-widest text-[10px] mb-2">Термін (дні)</label>
                   <input required type="number" name="shelfLifeDays" onChange={handleChange} className="retro-input w-full font-display text-xl" defaultValue={90} />
                 </div>
               </div>
@@ -115,8 +115,8 @@ const AddIceCreamModal: React.FC<AddIceCreamModalProps> = ({ isOpen, onClose, on
                           type="button"
                           onClick={() => setFormData(prev => ({ ...prev, [field]: v }))}
                           className={`w-10 h-10 border-4 border-choco font-display text-lg transition-all rounded-full flex items-center justify-center ${formData[field as keyof IceCream] === v
-                              ? 'bg-cherry-red text-white shadow-retro-sm scale-110'
-                              : 'bg-white text-choco/20 hover:text-choco/40'
+                            ? 'bg-cherry-red text-white shadow-retro-sm scale-110'
+                            : 'bg-white text-choco/20 hover:text-choco/40'
                             }`}
                         >
                           {v}
@@ -128,7 +128,7 @@ const AddIceCreamModal: React.FC<AddIceCreamModalProps> = ({ isOpen, onClose, on
               </div>
 
               <div className="pt-4">
-                <label className="block font-body font-black text-choco/40 uppercase tracking-widest text-xs mb-2">Топінги (через кому)</label>
+                <label className="block font-body font-black text-choco uppercase tracking-widest text-[10px] mb-2">Топінги (через кому)</label>
                 <textarea name="toppingPairing" onChange={handleChange} rows={2} className="retro-input w-full font-bold resize-none" placeholder="СВІЖА М'ЯТА, ШОКОЛАДНИЙ СОУС..." />
               </div>
             </div>

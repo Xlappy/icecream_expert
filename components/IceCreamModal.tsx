@@ -27,7 +27,7 @@ const IceCreamModal: React.FC<IceCreamModalProps> = ({ iceCream, isOpen, onClose
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-choco/60 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-choco/60 animate-fadeIn">
       <div className="retro-card w-full max-w-2xl bg-cream relative animate-slideUp p-0 overflow-hidden flex flex-col max-h-[90vh]">
         {/* Top Strip */}
         <div className="h-4 w-full bg-cherry-red border-b-4 border-choco pattern-stripes"></div>

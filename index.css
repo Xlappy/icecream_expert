@@ -29,7 +29,7 @@
   }
 
   .retro-input {
-    @apply bg-white border-4 border-choco rounded-none px-4 py-2 font-body text-choco outline-none focus:ring-2 focus:ring-diner-blue;
+    @apply bg-white border-4 border-choco rounded-none px-4 py-2 font-body text-choco font-bold outline-none focus:bg-diner-yellow/10 focus:border-cherry-red;
   }
 
   .neon-text {
