@@ -184,7 +184,7 @@ const App: React.FC = () => {
           </div>
         </header>
 
-        <main className="max-w-5xl mx-auto p-12">
+        <main className={`mx-auto p-12 ${view === 'database' ? 'max-w-[95%] xl:max-w-7xl' : 'max-w-5xl'}`}>
           {/* SEARCH ONLY IN DATABASE VIEW */}
           {view === 'database' && (
             <div className="mb-12 animate-fadeIn">

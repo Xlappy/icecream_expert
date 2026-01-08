@@ -45,24 +45,24 @@ const IceCreamTable: React.FC<IceCreamTableProps> = ({ items, onUpdate, title })
           <tbody className="divide-y-4 divide-choco/10 font-body">
             {items.map(item => (
               <tr key={item.id} className="hover:bg-diner-yellow/20 transition-colors group">
-                <td className="px-6 py-5">
+                <td className="px-6 py-5 min-w-[300px]">
                   <input
                     className="bg-transparent font-body font-black text-lg text-choco border-none focus:ring-0 w-full"
                     value={item.name}
                     onChange={(e) => handleEdit(item.id, 'name', e.target.value)}
                   />
                 </td>
-                <td className="px-6 py-5">
+                <td className="px-6 py-5 min-w-[150px]">
                   <span className="bg-diner-blue/40 px-3 py-1 rounded-lg border-2 border-choco text-[10px] font-bold font-body uppercase inline-block whitespace-nowrap">{item.type}</span>
                 </td>
-                <td className="px-6 py-5">
+                <td className="px-6 py-5 min-w-[200px]">
                   <input
                     className="bg-transparent text-sm font-bold text-choco/60 uppercase border-none focus:ring-0 w-full"
                     value={item.brand}
                     onChange={(e) => handleEdit(item.id, 'brand', e.target.value)}
                   />
                 </td>
-                <td className="px-6 py-5">
+                <td className="px-6 py-5 min-w-[120px]">
                   <div className="flex items-center gap-1 font-body font-black text-xl">
                     <input
                       type="number"
@@ -73,7 +73,7 @@ const IceCreamTable: React.FC<IceCreamTableProps> = ({ items, onUpdate, title })
                     <span className="text-cherry-red font-display">₴</span>
                   </div>
                 </td>
-                <td className="px-6 py-5 font-bold">
+                <td className="px-6 py-5 font-bold min-w-[120px]">
                   <div className="flex items-center gap-1">
                     <input
                       type="number"
@@ -84,7 +84,7 @@ const IceCreamTable: React.FC<IceCreamTableProps> = ({ items, onUpdate, title })
                     <span className="text-xs text-choco/40 uppercase">kcal</span>
                   </div>
                 </td>
-                <td className="px-6 py-5">
+                <td className="px-6 py-5 min-w-[150px]">
                   <div className="flex gap-2">
                     {[1, 2, 3, 4, 5].map(v => (
                       <div
@@ -95,7 +95,7 @@ const IceCreamTable: React.FC<IceCreamTableProps> = ({ items, onUpdate, title })
                     ))}
                   </div>
                 </td>
-                <td className="px-6 py-5">
+                <td className="px-6 py-5 min-w-[80px]">
                   <button
                     onClick={() => deleteItem(item.id)}
                     className="w-10 h-10 bg-cream border-2 border-choco rounded-full flex items-center justify-center hover:bg-cherry-red hover:text-white transition-all shadow-retro-sm active:shadow-none active:translate-y-1"
