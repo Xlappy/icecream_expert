@@ -251,7 +251,7 @@ const App: React.FC = () => {
               <div className={`transition-all duration-700 ${hasAnalyzed ? 'lg:w-[350px] w-full shrink-0 sticky top-28' : 'max-w-3xl w-full text-center'}`}>
                 {!hasAnalyzed && (
                   <div className="mb-14 animate-fadeIn">
-                    <div className="inline-block bg-indigo-50 px-6 py-2 rounded-full text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-6 border border-indigo-100 shadow-sm">AI Intelligent Guide</div>
+                    <div className="inline-block bg-indigo-50 px-6 py-2 rounded-full text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-6 border border-indigo-100 shadow-sm">Expert Recommendation System</div>
                     <h2 className="text-5xl md:text-7xl font-black text-indigo-950 tracking-tighter mb-6 leading-[0.9] uppercase">ДЕГУСТАЦІЙНИЙ <br /><span className="text-indigo-400">ПРОТОКОЛ</span></h2>
                     <p className="text-indigo-500/70 text-lg md:text-xl font-medium max-w-xl mx-auto leading-relaxed italic">"Ваш персональний навігатор у світі преміальних десертів та авторського морозива."</p>
                   </div>
