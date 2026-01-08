@@ -27,51 +27,57 @@ const IceCreamModal: React.FC<IceCreamModalProps> = ({ iceCream, isOpen, onClose
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-indigo-950/40 backdrop-blur-xl animate-fadeIn">
-      <div className="bg-white/90 backdrop-blur-3xl w-full max-w-2xl rounded-[4rem] overflow-hidden shadow-2xl relative animate-slideUp border border-white">
-        <div className="p-12 pb-8">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-choco/60 backdrop-blur-sm animate-fadeIn">
+      <div className="retro-card w-full max-w-2xl bg-cream relative animate-slideUp p-0 overflow-hidden flex flex-col max-h-[90vh]">
+        {/* Top Strip */}
+        <div className="h-4 w-full bg-cherry-red border-b-4 border-choco pattern-stripes"></div>
+
+        <div className="p-10 overflow-y-auto custom-scrollbar">
           <div className="flex justify-between items-start mb-10">
-            <div className="w-24 h-24 bg-indigo-50 rounded-[2.5rem] flex items-center justify-center text-7xl shadow-inner border border-indigo-100/50">
+            <div className="w-32 h-32 bg-white rounded-3xl border-8 border-choco flex items-center justify-center text-8xl shadow-retro rotate-[-3deg]">
               {getItemIcon(iceCream.type)}
             </div>
             <div className="flex gap-4">
               <button
                 onClick={() => onToggleFavorite(iceCream.id)}
-                className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-sm transition-all hover:scale-110 active:scale-90 ${isFavorite ? 'bg-rose-50 text-rose-500' : 'bg-white text-indigo-100 hover:text-rose-500'}`}
+                className={`retro-btn w-16 h-16 rounded-full p-0 flex items-center justify-center text-3xl ${isFavorite ? 'bg-cream' : 'bg-white'}`}
               >
                 {isFavorite ? '❤️' : '🤍'}
               </button>
-              <button onClick={onClose} className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-indigo-950/20 hover:text-indigo-950 shadow-sm transition-all">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+              <button onClick={onClose} className="retro-btn w-16 h-16 rounded-full p-0 flex items-center justify-center text-3xl bg-diner-blue">
+                ✕
               </button>
             </div>
           </div>
 
-          <div className="space-y-2 mb-10">
-            <h2 className="text-5xl font-black text-indigo-950 tracking-tighter uppercase leading-[0.9]">{iceCream.name}</h2>
-            <p className="text-xs font-black text-indigo-400 uppercase tracking-[0.3em]">{iceCream.brand} • ПРЕМІУМ ЛІНІЙКА</p>
+          <div className="space-y-4 mb-10 text-center">
+            <h2 className="text-6xl text-choco uppercase leading-none drop-shadow-sm">{iceCream.name}</h2>
+            <div className="flex justify-center gap-4">
+              <span className="font-display text-diner-blue text-lg uppercase tracking-widest">{iceCream.brand}</span>
+              <span className="text-choco/30">|</span>
+              <span className="font-display text-cherry-red text-lg uppercase tracking-widest">ПРЕМІУМ-ВИНІЛ</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 mb-10">
-            <div className="bg-indigo-50/50 p-6 rounded-[2rem] border border-indigo-100/50">
-              <span className="text-[10px] font-black text-indigo-300 uppercase tracking-widest block mb-1">Ціна за порцію</span>
-              <span className="text-3xl font-black text-indigo-950 tracking-tighter">{iceCream.price} ₴</span>
+            <div className="bg-diner-yellow p-6 border-4 border-choco shadow-retro-sm transform rotate-[-1deg]">
+              <span className="font-body font-black text-choco/60 uppercase tracking-widest block mb-2 text-xs">Ціна за порцію</span>
+              <span className="font-display text-4xl text-choco">{iceCream.price} ₴</span>
             </div>
-            <div className="bg-indigo-50/50 p-6 rounded-[2rem] border border-indigo-100/50">
-              <span className="text-[10px] font-black text-indigo-300 uppercase tracking-widest block mb-1">Калорійність</span>
-              <span className="text-3xl font-black text-indigo-950 tracking-tighter">{iceCream.calories} <small className="text-sm">ккал</small></span>
+            <div className="bg-diner-pink p-6 border-4 border-choco shadow-retro-sm transform rotate-[1deg]">
+              <span className="font-body font-black text-choco/60 uppercase tracking-widest block mb-2 text-xs">Калорійність</span>
+              <span className="font-display text-4xl text-choco">{iceCream.calories} <small className="text-xl">KCAL</small></span>
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-10">
             <div>
-              <h3 className="text-[11px] font-black text-indigo-950 uppercase tracking-widest mb-6 flex items-center gap-3">
-                <span className="w-6 h-[2px] bg-indigo-600"></span>
-                СМАКОВИЙ ПРОФІЛЬ
+              <h3 className="font-display text-2xl text-choco mb-6 flex items-center gap-4">
+                <span className="h-2 flex-grow bg-choco/20 rounded-full"></span>
+                ПРОФІЛЬ СМАКУ
+                <span className="h-2 flex-grow bg-choco/20 rounded-full"></span>
               </h3>
-              <div className="grid grid-cols-2 gap-x-10 gap-y-6">
+              <div className="grid grid-cols-2 gap-x-12 gap-y-8 p-6 bg-white border-4 border-choco border-dashed rounded-2xl">
                 {[
                   { label: 'Жирність', value: iceCream.fatContent },
                   { label: 'Текстура', value: iceCream.texture },
@@ -79,38 +85,35 @@ const IceCreamModal: React.FC<IceCreamModalProps> = ({ iceCream, isOpen, onClose
                   { label: 'Кислотність', value: iceCream.acidity },
                 ].map(stat => (
                   <div key={stat.label}>
-                    <div className="flex justify-between items-center mb-2.5">
-                      <span className="text-[10px] font-black text-indigo-400 uppercase tracking-wider">{stat.label}</span>
-                      <span className="text-[10px] font-black text-indigo-950">{stat.value}/5</span>
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="font-body font-black text-choco/60 uppercase text-xs tracking-widest">{stat.label}</span>
+                      <span className="font-display text-choco">{stat.value}/5</span>
                     </div>
-                    <div className="h-1.5 w-full bg-indigo-50 rounded-full overflow-hidden">
-                      <div className="h-full bg-indigo-600 transition-all duration-1000" style={{ width: `${stat.value * 20}%` }}></div>
+                    <div className="h-6 w-full bg-cream border-4 border-choco overflow-hidden rounded-full">
+                      <div className="h-full bg-diner-blue transition-all duration-1000 border-r-4 border-choco shadow-inner" style={{ width: `${stat.value * 20}%` }}></div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4">
-              <h3 className="text-[11px] font-black text-indigo-950 uppercase tracking-widest mb-4 flex items-center gap-3">
-                <span className="w-6 h-[2px] bg-indigo-600"></span>
-                РЕКОМЕНДОВАНІ ТОПІНГИ
-              </h3>
-              <p className="text-sm font-medium text-indigo-900/70 leading-relaxed italic bg-neutral-50 p-6 rounded-[2rem] border border-indigo-50 shadow-inner">
-                "{iceCream.toppingPairing}"
+            <div>
+              <h3 className="font-display text-2xl text-cherry-red mb-4">НАША РЕКОМЕНДАЦІЯ:</h3>
+              <p className="font-body font-bold text-xl text-choco leading-relaxed bg-diner-yellow/20 p-8 rounded-2xl border-4 border-choco border-dotted shadow-inner italic">
+                "Ми впевнені, що найкраще цей смак розкриється у поєднанні з {iceCream.toppingPairing.toLowerCase()}. Смачного!"
               </p>
             </div>
           </div>
         </div>
 
-        <div className="p-10 bg-indigo-950 text-white flex justify-between items-center">
+        <div className="p-8 bg-choco text-cream flex justify-between items-center border-t-8 border-diner-blue">
           <div className="flex flex-col">
-            <span className="text-[9px] font-black text-indigo-400 uppercase tracking-widest">Основний інгредієнт</span>
-            <span className="text-sm font-black uppercase tracking-tight">{iceCream.baseIngredient}</span>
+            <span className="font-body font-black text-diner-blue uppercase tracking-widest text-[10px]">ОСНОВНИЙ ІНГРЕДІЄНТ</span>
+            <span className="font-display text-xl uppercase">{iceCream.baseIngredient}</span>
           </div>
           <div className="text-right flex flex-col">
-            <span className="text-[9px] font-black text-indigo-400 uppercase tracking-widest">Термін придатності</span>
-            <span className="text-sm font-black uppercase tracking-tight">{iceCream.shelfLifeDays} дні</span>
+            <span className="font-body font-black text-diner-blue uppercase tracking-widest text-[10px]">ТЕРМІН ПРИДАТНОСТІ</span>
+            <span className="font-display text-xl uppercase">{iceCream.shelfLifeDays} ДНІВ</span>
           </div>
         </div>
       </div>

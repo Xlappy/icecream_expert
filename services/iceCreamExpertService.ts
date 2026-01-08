@@ -1,9 +1,39 @@
-
 import { IceCream, UserPreferences, Recommendation } from "../types";
 
 export class IceCreamExpertService {
+  private baseUrl = "http://localhost:3000/api";
+
+  /**
+   * Отримуємо всі дані з БД через сервер.
+   */
+  async getAllIceCreams(): Promise<IceCream[]> {
+    try {
+      const response = await fetch(`${this.baseUrl}/icecreams`);
+      if (!response.ok) throw new Error("Failed to fetch ice creams");
+      return await response.json();
+    } catch (error) {
+      console.error("Error loading ice creams:", error);
+      return [];
+    }
+  }
+
+  /**
+   * Пошук по БД.
+   */
+  async searchIceCreams(query: string): Promise<IceCream[]> {
+    try {
+      const response = await fetch(`${this.baseUrl}/search?q=${encodeURIComponent(query)}`);
+      if (!response.ok) throw new Error("Search failed");
+      return await response.json();
+    } catch (error) {
+      console.error("Error during search:", error);
+      return [];
+    }
+  }
+
   /**
    * Локальний алгоритм ранжування морозива на основі уподобань користувача.
+   * Використовує отримані з БД дані.
    */
   getRecommendations(
     items: IceCream[],
@@ -111,4 +141,3 @@ export class IceCreamExpertService {
     return `${intro}${analysis}${pairing}`;
   }
 }
-

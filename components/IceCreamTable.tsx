@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { IceCream } from '../types';
 
@@ -23,69 +22,75 @@ const IceCreamTable: React.FC<IceCreamTableProps> = ({ items, onUpdate, title })
   };
 
   return (
-    <div className="bg-white rounded-[2rem] border border-blue-50 shadow-sm overflow-hidden">
-      <div className="px-8 py-6 border-b border-blue-50 flex justify-between items-center bg-blue-50/10">
-        <h3 className="font-black text-blue-900 uppercase tracking-tight text-sm">{title}</h3>
-        <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">{items.length} одиниць</span>
+    <div className="bg-cream rounded-xl border-8 border-choco shadow-retro overflow-hidden relative">
+      {/* Декоративна смужка зверху */}
+      <div className="h-6 w-full bg-diner-blue border-b-8 border-choco pattern-stripes"></div>
+
+      <div className="px-8 py-6 border-b-8 border-choco flex flex-col md:flex-row justify-between items-center gap-4 bg-cream">
+        <h3 className="font-display text-4xl text-cherry-red transform -rotate-2 drop-shadow-sm">{title}</h3>
+        <span className="font-display text-xl bg-diner-yellow px-6 py-2 rounded-full border-4 border-choco text-choco shadow-retro-sm">
+          {items.length} СМАКІВ
+        </span>
       </div>
+
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-blue-50/30">
+          <thead className="bg-diner-pink/30 border-b-8 border-choco">
+            <tr>
               {['Назва', 'Стиль', 'Бренд', 'Ціна', 'Калорії', 'Жирність', 'Дії'].map(h => (
-                <th key={h} className="px-6 py-4 text-[10px] font-black text-blue-400 uppercase tracking-wider">{h}</th>
+                <th key={h} className="px-6 py-4 font-body font-black text-choco uppercase tracking-widest text-sm">{h}</th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-blue-50">
+          <tbody className="divide-y-4 divide-choco/10 font-body">
             {items.map(item => (
-              <tr key={item.id} className="hover:bg-blue-50/20 transition-colors group">
+              <tr key={item.id} className="hover:bg-diner-yellow/20 transition-colors group">
                 <td className="px-6 py-5">
                   <input
-                    className="bg-transparent font-black text-blue-900 border-none focus:ring-0 w-full text-sm"
+                    className="bg-transparent font-display text-2xl text-choco border-none focus:ring-0 w-full"
                     value={item.name}
                     onChange={(e) => handleEdit(item.id, 'name', e.target.value)}
                   />
                 </td>
                 <td className="px-6 py-5">
-                  <span className="text-[10px] font-bold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-full uppercase">{item.type}</span>
+                  <span className="bg-diner-blue/40 px-3 py-1 rounded-lg border-2 border-choco text-xs font-bold font-body uppercase">{item.type}</span>
                 </td>
                 <td className="px-6 py-5">
                   <input
-                    className="bg-transparent text-[11px] font-bold text-blue-500 uppercase border-none focus:ring-0 w-full"
+                    className="bg-transparent text-sm font-bold text-choco/60 uppercase border-none focus:ring-0 w-full"
                     value={item.brand}
                     onChange={(e) => handleEdit(item.id, 'brand', e.target.value)}
                   />
                 </td>
                 <td className="px-6 py-5">
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 font-display text-xl">
                     <input
                       type="number"
-                      className="bg-transparent font-black text-blue-900 border-none focus:ring-0 w-16 text-sm"
+                      className="bg-transparent text-choco border-none focus:ring-0 w-24"
                       value={item.price}
                       onChange={(e) => handleEdit(item.id, 'price', parseInt(e.target.value))}
                     />
-                    <span className="text-[10px] font-bold text-blue-300">₴</span>
+                    <span className="text-cherry-red">₴</span>
                   </div>
                 </td>
-                <td className="px-6 py-5">
+                <td className="px-6 py-5 font-bold">
                   <div className="flex items-center gap-1">
                     <input
                       type="number"
-                      className="bg-transparent font-black text-blue-900 border-none focus:ring-0 w-16 text-sm"
+                      className="bg-transparent text-choco border-none focus:ring-0 w-16"
                       value={item.calories}
                       onChange={(e) => handleEdit(item.id, 'calories', parseInt(e.target.value))}
                     />
-                    <span className="text-[10px] font-bold text-blue-300">kcal</span>
+                    <span className="text-xs text-choco/40 uppercase">kcal</span>
                   </div>
                 </td>
                 <td className="px-6 py-5">
-                  <div className="flex gap-1">
+                  <div className="flex gap-2">
                     {[1, 2, 3, 4, 5].map(v => (
                       <div
                         key={v}
                         onClick={() => handleEdit(item.id, 'fatContent', v)}
-                        className={`w-2 h-2 rounded-full cursor-pointer transition-all ${item.fatContent >= v ? 'bg-blue-600' : 'bg-blue-100 group-hover:bg-blue-200'}`}
+                        className={`w-4 h-4 rounded-full cursor-pointer border-2 border-choco transition-all ${item.fatContent >= v ? 'bg-cherry-red scale-110 shadow-sm' : 'bg-cream'}`}
                       ></div>
                     ))}
                   </div>
@@ -93,11 +98,9 @@ const IceCreamTable: React.FC<IceCreamTableProps> = ({ items, onUpdate, title })
                 <td className="px-6 py-5">
                   <button
                     onClick={() => deleteItem(item.id)}
-                    className="text-blue-200 hover:text-red-500 transition-colors"
+                    className="w-10 h-10 bg-cream border-2 border-choco rounded-full flex items-center justify-center hover:bg-cherry-red hover:text-white transition-all shadow-retro-sm active:shadow-none active:translate-y-1"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
+                    🗑️
                   </button>
                 </td>
               </tr>
@@ -105,8 +108,8 @@ const IceCreamTable: React.FC<IceCreamTableProps> = ({ items, onUpdate, title })
           </tbody>
         </table>
         {items.length === 0 && (
-          <div className="py-20 text-center">
-            <p className="text-blue-300 font-bold uppercase tracking-widest text-[10px]">Записи відсутні</p>
+          <div className="py-24 text-center bg-cream/50">
+            <p className="font-display text-3xl text-choco/20 uppercase tracking-widest italic">Нічого не знайдено...</p>
           </div>
         )}
       </div>

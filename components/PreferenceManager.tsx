@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { UserPreferences } from '../types';
 import { ICE_CREAM_TYPES, POPULAR_FLAVORS } from '../constants';
@@ -35,98 +34,72 @@ const PreferenceManager: React.FC<PreferenceManagerProps> = ({ preferences, onCh
     }
   };
 
-  const translateType = (type: string) => {
-    const map: Record<string, string> = {
-      'Classic': 'Класичне', 'Gelato': 'Джелато', 'Sorbet': 'Сорбет', 'Soft Serve': 'М`яке', 'Vegan': 'Веган'
-    };
-    return map[type] || type;
-  };
-
   return (
-    <div className={`bg-white transition-all duration-700 ${compact
-      ? 'p-8 rounded-[3rem] shadow-2xl border border-indigo-100'
-      : 'p-6 rounded-3xl shadow-sm border border-indigo-100'
-      } space-y-8`}>
-
+    <div className="space-y-10">
       {/* Стилі */}
       <div>
-        <label className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-4 block">КЛАСИФІКАЦІЯ</label>
-        <div className={`flex flex-wrap gap-2 ${compact ? 'justify-center' : ''}`}>
+        <label className="block font-display text-2xl text-choco text-center mb-6 underline decoration-cherry-red decoration-4">ЯКИЙ СТИЛЬ ОБЕРЕТЕ?</label>
+        <div className="flex flex-wrap gap-3 justify-center">
           {ICE_CREAM_TYPES.map(type => (
             <button
               key={type}
               onClick={() => toggleStyle(type)}
-              className={`px-4 py-2 rounded-xl text-[11px] font-bold transition-all border tracking-tight ${preferences.likedStyles.includes(type)
-                ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-600/10'
-                : 'bg-indigo-50 text-indigo-500 border-indigo-100 hover:border-indigo-200'
+              className={`px-6 py-2 border-4 border-choco font-display text-sm tracking-widest transition-all ${preferences.likedStyles.includes(type)
+                  ? 'bg-diner-blue text-choco shadow-retro-sm translate-y-[-2px]'
+                  : 'bg-white text-choco/40 hover:bg-neutral-50'
                 }`}
             >
-              {translateType(type)}
+              {type.toUpperCase()}
             </button>
           ))}
         </div>
       </div>
 
-      <div className={`grid grid-cols-1 gap-6 ${compact && !showAdvanced ? 'hidden' : ''}`}>
+      <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${compact && !showAdvanced ? 'hidden' : ''}`}>
         {/* Ціна */}
-        <div>
-          <div className="flex justify-between items-end mb-3">
-            <label className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest block">МАКСИМАЛЬНА ЦІНА (₴)</label>
-            <span className="text-indigo-900 font-black text-sm">{preferences.priceRange[1]}</span>
+        <div className="retro-card p-6 bg-white border-2">
+          <div className="flex justify-between items-end mb-4">
+            <label className="font-display text-lg text-choco uppercase">МАКС. ЦІНА</label>
+            <span className="bg-diner-yellow px-4 py-1 border-4 border-choco font-display text-2xl rotate-3">{preferences.priceRange[1]} ₴</span>
           </div>
           <input
-            type="range" min="30" max="500" step="5"
+            type="range" min="30" max="500" step="10"
             value={preferences.priceRange[1]}
             onChange={(e) => onChange({ ...preferences, priceRange: [preferences.priceRange[0], Number(e.target.value)] })}
-            className="w-full accent-indigo-600"
+            className="w-full h-8 accent-cherry-red appearance-none bg-diner-blue/20 rounded-full border-4 border-choco"
           />
         </div>
 
         {/* Калорії */}
-        <div>
-          <div className="flex justify-between items-end mb-3">
-            <label className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest block">КАЛОРІЙНІСТЬ (ДО)</label>
-            <span className="text-indigo-900 font-black text-sm">{preferences.calorieRange[1]} ккал</span>
+        <div className="retro-card p-6 bg-white border-2">
+          <div className="flex justify-between items-end mb-4">
+            <label className="font-display text-lg text-choco uppercase">КАЛОРІЇ (ДО)</label>
+            <span className="bg-diner-pink px-4 py-1 border-4 border-choco font-display text-2xl rotate-[-3deg]">{preferences.calorieRange[1]}</span>
           </div>
           <input
-            type="range" min="50" max="1000" step="10"
+            type="range" min="50" max="1000" step="20"
             value={preferences.calorieRange[1]}
             onChange={(e) => onChange({ ...preferences, calorieRange: [preferences.calorieRange[0], Number(e.target.value)] })}
-            className="w-full accent-indigo-600"
+            className="w-full h-8 accent-cherry-red appearance-none bg-diner-blue/20 rounded-full border-4 border-choco"
           />
         </div>
 
-        {/* Технічні параметри */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-3 block text-center">ТЕРМІН ПРИДАТНОСТІ</label>
-            <select
-              value={preferences.minShelfLife || 0}
-              onChange={(e) => onChange({ ...preferences, minShelfLife: Number(e.target.value) })}
-              className="w-full bg-indigo-50 border border-indigo-100 rounded-xl px-3 py-2 text-[10px] font-black text-indigo-900 focus:ring-1 focus:ring-indigo-600 outline-none uppercase"
-            >
-              <option value="0">БЕЗ ВИМОГ</option>
-              <option value="30">30+ ДНІВ</option>
-              <option value="90">90+ ДНІВ</option>
-              <option value="180">180+ ДНІВ</option>
-            </select>
-          </div>
-          <div>
-            <label className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-3 block text-center">ЖИРНІСТЬ</label>
-            <div className="flex gap-1">
-              {[1, 2, 3, 4, 5].map(b => (
-                <button
-                  key={b}
-                  onClick={() => onChange({ ...preferences, preferredFatContent: b })}
-                  className={`flex-1 py-2 text-[10px] font-black rounded-lg border transition-all ${preferences.preferredFatContent === b
-                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-md'
-                    : 'bg-indigo-50 text-indigo-400 border-indigo-100'
-                    }`}
-                >
-                  {b}
-                </button>
-              ))}
-            </div>
+        {/* Жирність */}
+        <div className="md:col-span-2 text-center">
+          <label className="block font-display text-lg text-choco uppercase mb-4">БАЖАНА ЖИРНІСТЬ</label>
+          <div className="flex gap-4 justify-center">
+            {[1, 2, 3, 4, 5].map(b => (
+              <button
+                key={b}
+                onClick={() => onChange({ ...preferences, preferredFatContent: b })}
+                className={`w-14 h-14 border-4 border-choco font-display text-2xl transition-all rounded-full flex items-center justify-center ${preferences.preferredFatContent === b
+                    ? 'bg-cherry-red text-white shadow-retro scale-110'
+                    : 'bg-white text-choco/20'
+                  }`}
+              >
+                {b}
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -134,53 +107,52 @@ const PreferenceManager: React.FC<PreferenceManagerProps> = ({ preferences, onCh
       {compact && (
         <button
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className="w-full text-indigo-400 hover:text-indigo-900 font-bold text-[9px] uppercase tracking-widest py-3 border-t border-indigo-50 transition-all"
+          className="w-full font-bold text-choco underline decoration-diner-blue decoration-4 underline-offset-8 py-4"
         >
-          {showAdvanced ? 'ПРИХОВАТИ ФІЛЬТРИ ↑' : 'РОЗШИРЕНІ ПАРАМЕТРИ ↓'}
+          {showAdvanced ? 'МЕНШЕ ФІЛЬТРІВ ↑' : 'БІЛЬШЕ ПАРАМЕТРИВ ↓'}
         </button>
       )}
 
-      <div className={`space-y-8 transition-all duration-700 overflow-hidden ${(compact && !showAdvanced) ? 'max-h-0 opacity-0 invisible' : 'max-h-[1000px] opacity-100 visible'
-        }`}>
-        <div>
-          <label className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-4 block">УЛУБЛЕНІ СМАКИ</label>
-          <div className={`flex flex-wrap gap-1.5 max-h-40 overflow-y-auto pr-2 custom-scrollbar p-1 ${compact ? 'justify-center' : ''}`}>
-            {POPULAR_FLAVORS.map(flavor => (
-              <button
-                key={flavor}
-                onClick={() => toggleFlavor(flavor, 'like')}
-                className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold uppercase tracking-tight transition-all ${preferences.favoriteFlavors.includes(flavor)
-                  ? 'bg-indigo-50 text-indigo-900 border-indigo-200'
-                  : 'bg-white text-indigo-400 border-indigo-100'
-                  }`}
-              >
-                {flavor}
-              </button>
-            ))}
+      {(!compact || showAdvanced) && (
+        <div className="space-y-12 animate-fadeIn">
+          <div>
+            <label className="block font-display text-2xl text-choco text-center mb-8 underline decoration-diner-blue decoration-4">УЛЮБЛЕНІ СМАКИ</label>
+            <div className="flex flex-wrap gap-2 justify-center max-h-48 overflow-y-auto p-4 custom-scrollbar bg-cream/50 rounded-xl border-4 border-choco border-dashed">
+              {POPULAR_FLAVORS.map(flavor => (
+                <button
+                  key={flavor}
+                  onClick={() => toggleFlavor(flavor, 'like')}
+                  className={`px-4 py-2 border-2 border-choco font-body font-bold text-xs uppercase tracking-tighter transition-all ${preferences.favoriteFlavors.includes(flavor)
+                      ? 'bg-diner-blue text-choco shadow-retro-sm translate-y-[-1px]'
+                      : 'bg-white text-choco/40 hover:bg-neutral-50'
+                    }`}
+                >
+                  {flavor}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="pt-6 border-t border-indigo-100">
-          <label className="text-[10px] font-bold text-indigo-900 uppercase tracking-widest mb-4 block flex items-center gap-2">
-            <span className="w-2 h-2 bg-indigo-900 rounded-full animate-pulse shadow-sm"></span>
-            ІГНОРУВАТИ СМАКИ
-          </label>
-          <div className={`flex flex-wrap gap-1.5 max-h-40 overflow-y-auto pr-2 custom-scrollbar p-1 ${compact ? 'justify-center' : ''}`}>
-            {POPULAR_FLAVORS.map(flavor => (
-              <button
-                key={flavor}
-                onClick={() => toggleFlavor(flavor, 'dislike')}
-                className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold uppercase tracking-tight transition-all ${(preferences.dislikedFlavors || []).includes(flavor)
-                  ? 'bg-indigo-600 text-white border-indigo-600'
-                  : 'bg-white text-indigo-300 border-indigo-50'
-                  }`}
-              >
-                {flavor}
-              </button>
-            ))}
+          <div className="relative pt-12">
+            <div className="absolute top-0 left-0 w-full h-2 bg-choco/10 blur-[1px]"></div>
+            <label className="block font-display text-2xl text-cherry-red text-center mb-8">ІГНОРУВАТИ СМАКИ</label>
+            <div className="flex flex-wrap gap-2 justify-center max-h-48 overflow-y-auto p-4 custom-scrollbar bg-cream/50 rounded-xl border-4 border-choco border-dashed">
+              {POPULAR_FLAVORS.map(flavor => (
+                <button
+                  key={flavor}
+                  onClick={() => toggleFlavor(flavor, 'dislike')}
+                  className={`px-4 py-2 border-2 border-choco font-body font-bold text-xs uppercase tracking-tighter transition-all ${(preferences.dislikedFlavors || []).includes(flavor)
+                      ? 'bg-cherry-red text-white shadow-retro-sm translate-y-[-1px]'
+                      : 'bg-cream text-choco/20'
+                    }`}
+                >
+                  {flavor}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

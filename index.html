@@ -4,93 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IceExpert - Professional Gourmet Guide</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <title>50's Ice Cream Diner - Gourmet Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #fcf9f7;
-      color: #1a0f0a;
-      letter-spacing: -0.015em;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
     .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
+      width: 8px;
     }
 
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
+      background: #FFC8DD;
     }
 
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #d4c3b5;
-      border-radius: 10px;
+      background: #4A3B32;
+      border-radius: 4px;
+      border: 2px solid #FFC8DD;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: scale(0.98) translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .animate-fadeIn {
-      animation: fadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      animation: fadeIn 0.5s ease-out forwards;
     }
 
-    .animate-slideIn {
-      animation: slideIn 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    }
-
-    input[type="range"] {
-      -webkit-appearance: none;
-      height: 4px;
-      background: #f1e4dc;
-      border-radius: 5px;
-      background-image: linear-gradient(#1a1a1a, #1a1a1a);
-      background-repeat: no-repeat;
-      background-size: 0% 100%;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-      background: #1a1a1a;
-      cursor: pointer;
-      border: 3px solid white;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s;
-    }
-
-    input[type="range"]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
+    .animate-slideUp {
+      animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     }
   </style>
-
 </head>
 
 <body>
