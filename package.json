@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "cd backend && npm install",
     "seed": "node backend/seed.js",
-    "server": "npm run seed && node backend/server.js",
+    "server": "node backend/server.js",
     "client": "vite",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "tsc && vite build",
