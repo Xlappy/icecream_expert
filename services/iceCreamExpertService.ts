@@ -1,7 +1,7 @@
 import { IceCream, UserPreferences, Recommendation } from "../types";
 
 export class IceCreamExpertService {
-  private baseUrl = "http://localhost:3000/api";
+  private baseUrl = "http://localhost:3002/api";
 
   /**
    * Отримуємо всі дані з БД через сервер.
